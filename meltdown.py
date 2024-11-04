@@ -9,6 +9,42 @@ class Color:
     OK = Fore.GREEN
     DEFAULT = Style.RESET_ALL 
 
+def color_text(text, colors):
+    colored_text = ""
+    color_index = 0
+    for char in text:
+        if char != ' ':
+            colored_text += f"\033[38;2;{colors[color_index][0]};{colors[color_index][1]};{colors[color_index][2]}m{char}\033[0m"
+            color_index = (color_index + 1) % len(colors)
+        else:
+            colored_text += char
+    return colored_text
+
+# Create a gradient of colors from orange to red
+colors = [
+    (255, 165, 0),  # Orange
+    (255, 140, 0),
+    (255, 69, 0),   # Dark Orange
+    (255, 0, 0)     # Red
+]
+
+ascii_art = """
+                                                                   .-'''-.                             
+                                    .---.         _______         '   _    \                           
+ __  __   ___         __.....__     |   |         \  ___ `'.    /   /` '.   \                 _..._    
+|  |/  `.'   `.   .-''         '.   |   |          ' |--.\  \  .   |     \  '       _     _ .'     '.  
+|   .-.  .-.   ' /     .-''"'-.  `. |   |     .|   | |    \  ' |   '      |  '/\    \\   //.   .-.   . 
+|  |  |  |  |  |/     /________\   \|   |   .' |_  | |     |  '\    \     / / `\\  //\\ // |  '   '  | 
+|  |  |  |  |  ||                  ||   | .'     | | |     |  | `.   ` ..' /    \`//  \'/  |  |   |  | 
+|  |  |  |  |  |\    .-------------'|   |'--.  .-' | |     ' .'    '-...-'`      \|   |/   |  |   |  | 
+|  |  |  |  |  | \    '-.____...---.|   |   |  |   | |___.' /'                    '        |  |   |  | 
+|__|  |__|  |__|  `.             .' |   |   |  |  /_______.'/                              |  |   |  | 
+                    `''-...... -'   '---'   |  '.'\_______|/                               |  |   |  | 
+                                            |   /                                          |  |   |  | 
+                                            `'-'                                           '--'   '--' 
+                                                             https://github.com/sudzythegoat/Meltdown
+"""
+
 class Config:
     amount = 50
     
@@ -70,22 +106,7 @@ def parse():
         
     if __name__ == "__main__":
         global cmd
-        print("""
-                                                                   .-'''-.                             
-                                    .---.         _______         '   _    \                           
- __  __   ___         __.....__     |   |         \  ___ `'.    /   /` '.   \                 _..._    
-|  |/  `.'   `.   .-''         '.   |   |          ' |--.\  \  .   |     \  '       _     _ .'     '.  
-|   .-.  .-.   ' /     .-''"'-.  `. |   |     .|   | |    \  ' |   '      |  '/\    \\   //.   .-.   . 
-|  |  |  |  |  |/     /________\   \|   |   .' |_  | |     |  '\    \     / / `\\  //\\ // |  '   '  | 
-|  |  |  |  |  ||                  ||   | .'     | | |     |  | `.   ` ..' /    \`//  \'/  |  |   |  | 
-|  |  |  |  |  |\    .-------------'|   |'--.  .-' | |     ' .'    '-...-'`      \|   |/   |  |   |  | 
-|  |  |  |  |  | \    '-.____...---.|   |   |  |   | |___.' /'                    '        |  |   |  | 
-|__|  |__|  |__|  `.             .' |   |   |  |  /_______.'/                              |  |   |  | 
-                    `''-...... -'   '---'   |  '.'\_______|/                               |  |   |  | 
-                                            |   /                                          |  |   |  | 
-                                            `'-'                                           '--'   '--' 
-                                                             https://github.com/sudzythegoat/Meltdown
-        """)
+        print(color_text(ascii_art, colors))
         while True:
             cmd = input("[>] ")
             parse()
