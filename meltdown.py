@@ -1,5 +1,8 @@
 import request
 from colorama import fore, style
 
-class Colors:
-    Color.WARNING = Fore.Red
+class Color:
+    WARNING = Fore.Red
+    OK = Fore.Green
+    DEFAULT = Style.RESET_ALL 
+print({Color.OK}Green{Color.DEFAULT})
