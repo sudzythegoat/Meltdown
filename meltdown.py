@@ -75,12 +75,12 @@ def parse():
     elif cmd.startswith("-o"): # Post requests spam
         url = cmd[3:]
         counter = 0
-        data = {
-            'random_string': ''.join(random.choices(string.ascii_letters + string.digits, k=10)),
-            'random_number': random.randint(0, 1000),
-            'random_text': 'lorem ipsum dolor sit amet'
-        }
         for _ in range(Config.amount):
+            data = {
+                'random_string': ''.join(random.choices(string.ascii_letters + string.digits, k=10)),
+                'random_number': random.randint(0, 1000),
+                'random_text': 'lorem ipsum dolor sit amet'
+            }
             try:
                 response = post(url, data=data)
                 counter += 1
