@@ -1,8 +1,15 @@
-import request
-from colorama import fore, style
+from colorama import Fore, Style
 
 class Color:
-    WARNING = Fore.Red
-    OK = Fore.Green
+    WARNING = Fore.RED
+    OK = Fore.GREEN
     DEFAULT = Style.RESET_ALL 
-print({Color.OK}Green{Color.DEFAULT})
+    
+def main():
+    global c
+    c = input("[>] ")
+
+def parse():
+    global c
+    if c.startswith("-p"):
+        p = c[5:]
